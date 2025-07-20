@@ -1,3 +1,5 @@
+# Full fixed version of the macro tool with working left/right recording and playback
+
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 import time
@@ -17,7 +19,6 @@ left_clicks = 0
 right_clicks = 0
 record_mode = "both"
 
-# Updated keybinds with separate play actions
 keybinds = {
     "record_left": "r",
     "record_right": "t",
@@ -47,9 +48,9 @@ def record_clicks(duration=3, mode="both"):
     def on_click(x, y, button, pressed):
         global left_clicks, right_clicks
         if pressed and recording:
-            if record_mode == "left" and button != Button.left:
+            if mode == "left" and button != Button.left:
                 return
-            if record_mode == "right" and button != Button.right:
+            if mode == "right" and button != Button.right:
                 return
             timestamp = time.time() - start_time
             clicks.append((timestamp, button.name))
@@ -85,7 +86,7 @@ def replay_clicks(filter_button=None):
             delay = (timestamp / speed_multiplier) - (time.time() - start)
             if delay > 0:
                 time.sleep(delay)
-            mouse_controller.click(getattr(Button, button))
+            mouse_controller.click(Button[button])
     playing = False
     update_status("Playback finished.")
 
@@ -174,7 +175,7 @@ def start_hotkey_listener():
 # GUI setup
 root = tk.Tk()
 root.title("Click Macro Tool")
-root.geometry("340x550")
+root.geometry("340x560")
 root.configure(bg="#2c3e50")
 
 title_label = tk.Label(root, text="🖱️ Click Macro Tool", font=("Arial", 16, "bold"), bg="#2c3e50", fg="white")
@@ -205,4 +206,3 @@ status_label.pack(pady=5)
 
 start_hotkey_listener()
 root.mainloop()
-
