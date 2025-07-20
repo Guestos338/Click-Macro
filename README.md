@@ -18,7 +18,7 @@ A lightweight, standalone mouse click recorder and macro playback tool — **no 
 
 ## 📂 How to Use
 
-1. Download the `.exe` from [Releases](https://github.com/your-username/your-repo/releases)
+1. Download the `.exe` from [Release](https://github.com/Guestos338/Click-Macro/releases/tag/v1%2C0%2C0)
 2. Run `ClickMacroTool.exe`
 3. Use the buttons or keyboard hotkeys to record and play
 
